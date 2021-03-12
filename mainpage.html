@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="styling.css" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <h1>Bihashara Invest</h1>
+        <ul>
+            <li><a>About Us</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a>Contact Us</a></li>
+        </ul>
+    </header>
+    <div class="cont">
+        <h3>Need Contribution to your project? click the button below</h3>
+        <a class="initiateTransaction" id="myBtn" href="#">Initiate Transaction</a>
+        <h3>Send Cash to a project</h3>
+        <a id="myBtn1" class="initiateTransaction" href="#">Contribute</a>
+        <h3>Approve a project</h3>
+        <a id="myBtn2" class="initiateTransaction">Approve a request</a>
+    </div>
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form style="display:flex; flex-direction: column;">
+                <label>Enter Reason for Contribution</label>
+                <input type="text" width="300">
+
+                <label>Enter Amount</label>
+                <input type="number" width="300">
+
+                <label>Enter Address of the recipient</label>
+                <input type="number" width="300">
+            </form>
+        </div>
+
+    </div>
+
+    <div id="myModal1" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close1">&times;</span>
+            <form style="display:flex; flex-direction: column;">
+                <label>Enter Amount</label>
+                <input type="number" width="300">
+
+                <label>Enter Address of the recipient</label>
+                <input type="submit" width="300">
+            </form>
+        </div>
+
+    </div>
+    <div id="myModal2" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close2">&times;</span>
+            <form style="display:flex; flex-direction: column;">
+                <label>Do you approve request? type yes or no</label>
+                <input type="text" id="yesOrNoTextBox">
+            </form>
+        </div>
+    </div>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+
+        var modal1 = document.getElementById("myModal1");
+        var modal2 = document.getElementById("myModal2");
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        var btn1 = document.getElementById("myBtn1");
+        var btn2 = document.getElementById("myBtn2");
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        var span1 = document.getElementsByClassName("close1")[0];
+        var span2 = document.getElementsByClassName("close2")[0];
+        var yesOrNo = document.getElementById("yesOrNoTextBox");
+        // When the user clicks on the button, open the modal
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        btn1.onclick = function() {
+            modal1.style.display = "block";
+        }
+        btn2.onclick = function() {
+                modal2.style.display = "block";
+            }
+            // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        span1.onclick = function() {
+            modal1.style.display = "none";
+        }
+        span2.onclick = function() {
+            modal2.style.display = "none";
+        }
+        window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal1.style.display = "none";
+                }
+            }
+            // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+        if (yesOrNo.textContent == "YES" || yesOrNo.textContent == "yes") {
+
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,988 @@
+.globl	constructor
+.public	constructor
+.type	constructor, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7_with_init_storage$
+}
+IF
+;; constructor protection
+GETGLOB 6
+THROWIF 51
+PUSHINT 1
+SETGLOB 6
+;; end constructor protection
+; Decode input parameters
+ENDS
+; constructor Bihashara
+; expValue
+; end expValue
+;; get member sender
+GETGLOB 9
+; colValue
+SETGLOB 10
+; end colValue
+GETGLOB 5
+DUP
+ISNULL
+PUSHCONT {
+	DROP
+	PUSHINT 0
+}
+IF
+GETGLOB 2
+;; ==
+EQUAL
+THROWIFNOT 100
+ACCEPT
+; end constructor Bihashara
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	addMembers
+.public	addMembers
+.type	addMembers, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+ENDS
+; function addMembers
+; expValue
+;; fetch members
+GETGLOB 12
+;; get member sender
+GETGLOB 9
+SWAP
+; end expValue
+TRUE
+; colValue
+NEWC
+STI 1
+ROTREV
+PUSHINT 267
+DICTSETB
+SETGLOB 12
+; end colValue
+; end function addMembers
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	addMembers_internal
+.type	addMembers_internal, @function
+; function addMembers
+; expValue
+;; fetch members
+GETGLOB 12
+;; get member sender
+GETGLOB 9
+SWAP
+; end expValue
+TRUE
+; colValue
+NEWC
+STI 1
+ROTREV
+PUSHINT 267
+DICTSETB
+SETGLOB 12
+; end colValue
+; end function addMembers
+
+.globl	initiateProposal
+.public	initiateProposal
+.type	initiateProposal, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode description
+LDREF
+; Decode value
+LDU 128
+ENDS
+;; param: description
+;; param: value
+; modifier restricted
+;; get member sender
+GETGLOB 9
+;; push identifier manager
+GETGLOB 10
+SDEQ
+THROWIFNOT 100
+ACCEPT
+; function initiateProposal
+; expValue
+; end expValue
+;; push identifier value
+DUP
+; colValue
+SETGLOB 11
+; end colValue
+;; push identifier description
+PUSH S1
+;; push identifier value
+PUSH S1
+FALSE
+PUSHINT 0
+NEWDICT
+TUPLE 5
+;; decl: newproposal
+; expValue
+;; fetch proposals
+GETGLOB 13
+; end expValue
+;; push identifier newproposal
+PUSH S1
+;; array.push(..)
+UNTUPLE 5
+NEWC
+PUSH S5
+STREFR
+PUSH S4
+STUR 128
+PUSH S3
+STIR 1
+PUSH S2
+STUR 256
+PUSH S1
+SWAP
+STDICT
+XCHG s5
+BLKDROP 5
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+SETGLOB 13
+; end colValue
+DROP
+; end function initiateProposal
+DROP2
+; end modifier restricted
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	initiateProposal_internal
+.type	initiateProposal_internal, @function
+;; param: description
+;; param: value
+; modifier restricted
+;; get member sender
+GETGLOB 9
+;; push identifier manager
+GETGLOB 10
+SDEQ
+THROWIFNOT 100
+ACCEPT
+; function initiateProposal
+; expValue
+; end expValue
+;; push identifier value
+DUP
+; colValue
+SETGLOB 11
+; end colValue
+;; push identifier description
+PUSH S1
+;; push identifier value
+PUSH S1
+FALSE
+PUSHINT 0
+NEWDICT
+TUPLE 5
+;; decl: newproposal
+; expValue
+;; fetch proposals
+GETGLOB 13
+; end expValue
+;; push identifier newproposal
+PUSH S1
+;; array.push(..)
+UNTUPLE 5
+NEWC
+PUSH S5
+STREFR
+PUSH S4
+STUR 128
+PUSH S3
+STIR 1
+PUSH S2
+STUR 256
+PUSH S1
+SWAP
+STDICT
+XCHG s5
+BLKDROP 5
+SWAP
+UNPAIR
+PUSH S1
+INC
+XCHG s3
+ROTREV
+PUSHINT 32
+DICTUSETB
+PAIR
+; colValue
+SETGLOB 13
+; end colValue
+DROP
+; end function initiateProposal
+DROP2
+; end modifier restricted
+
+.globl	Contribute
+.public	Contribute
+.type	Contribute, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+; Decode input parameters
+; Decode amount
+LDU 128
+; Decode bounce
+LDI 1
+ENDS
+;; param: amount
+;; param: bounce
+; modifier onlyMembers
+;; index
+;; get member sender
+GETGLOB 9
+;; push identifier members
+GETGLOB 12
+PUSHINT 267
+DICTGET
+PUSHCONT {
+	PLDI 1
+}
+PUSHCONT {
+	PUSHINT 0
+}
+IFELSE
+THROWIFNOT 100
+ACCEPT
+; function Contribute
+;; index
+;; get member sender
+GETGLOB 9
+;; push identifier members
+GETGLOB 12
+PUSHINT 267
+DICTGET
+PUSHCONT {
+	PLDI 1
+}
+PUSHCONT {
+	PUSHINT 0
+}
+IFELSE
+THROWIFNOT 100
+;; push identifier amount
+PUSH S1
+;; push identifier minimumContribution
+GETGLOB 11
+;; >
+GREATER
+THROWIFNOT 100
+;; transfer()
+;; push identifier amount
+PUSH S1
+;; push identifier manager
+GETGLOB 10
+;; push identifier bounce
+PUSH S2
+NEWC
+STSLICECONST x6_
+STI 1
+PUSHINT 3
+STZEROES
+STSLICE
+SWAP
+STGRAMS
+PUSHINT 105
+STZEROES
+STSLICECONST 0
+STSLICECONST 0
+ENDC
+PUSHINT 3
+SENDRAWMSG
+;; ++
+; expValue
+;; fetch approversCount
+GETGLOB 14
+; end expValue
+INC
+; colValue
+SETGLOB 14
+; end colValue
+; end function Contribute
+DROP2
+; end modifier onlyMembers
+CALL $c7_to_c4$
+TRUE
+SETGLOB 7
+
+.globl	Contribute_internal
+.type	Contribute_internal, @function
+;; param: amount
+;; param: bounce
+; modifier onlyMembers
+;; index
+;; get member sender
+GETGLOB 9
+;; push identifier members
+GETGLOB 12
+PUSHINT 267
+DICTGET
+PUSHCONT {
+	PLDI 1
+}
+PUSHCONT {
+	PUSHINT 0
+}
+IFELSE
+THROWIFNOT 100
+ACCEPT
+; function Contribute
+;; index
+;; get member sender
+GETGLOB 9
+;; push identifier members
+GETGLOB 12
+PUSHINT 267
+DICTGET
+PUSHCONT {
+	PLDI 1
+}
+PUSHCONT {
+	PUSHINT 0
+}
+IFELSE
+THROWIFNOT 100
+;; push identifier amount
+PUSH S1
+;; push identifier minimumContribution
+GETGLOB 11
+;; >
+GREATER
+THROWIFNOT 100
+;; transfer()
+;; push identifier amount
+PUSH S1
+;; push identifier manager
+GETGLOB 10
+;; push identifier bounce
+PUSH S2
+NEWC
+STSLICECONST x6_
+STI 1
+PUSHINT 3
+STZEROES
+STSLICE
+SWAP
+STGRAMS
+PUSHINT 105
+STZEROES
+STSLICECONST 0
+STSLICECONST 0
+ENDC
+PUSHINT 3
+SENDRAWMSG
+;; ++
+; expValue
+;; fetch approversCount
+GETGLOB 14
+; end expValue
+INC
+; colValue
+SETGLOB 14
+; end colValue
+; end function Contribute
+DROP2
+; end modifier onlyMembers
+
+.globl	monitorCount
+.public	monitorCount
+.type	monitorCount, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+ENDS
+; function monitorCount
+;; return
+;; push identifier approversCount
+GETGLOB 14
+;; emitting 1 value(s)
+PUSH S1
+EQINT -1
+PUSHCONT {
+	PUSH S3
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xb43e0925
+	PUSH S1
+	STUR 256
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STUR 256
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function monitorCount
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	monitorCount_internal
+.type	monitorCount_internal, @function
+; function monitorCount
+;; return
+;; push identifier approversCount
+GETGLOB 14
+; end function monitorCount
+
+.globl	passProposal
+.public	passProposal
+.type	passProposal, @function
+GETGLOB 1
+ISNULL
+PUSHCONT {
+	CALL $c4_to_c7$
+}
+IF
+PUSH S1
+PUSHCONT {
+	LDU 32
+	GETGLOB 4
+	ROT
+	SETINDEXQ 5
+	SETGLOB 4
+}
+IFNOT
+; Decode input parameters
+; Decode index
+LDU 256
+ENDS
+;; param: index
+; modifier restricted
+;; get member sender
+GETGLOB 9
+;; push identifier manager
+GETGLOB 10
+SDEQ
+THROWIFNOT 100
+ACCEPT
+; function passProposal
+;; index
+;; push identifier index
+DUP
+;; push identifier proposals
+GETGLOB 13
+INDEX 1
+PUSHINT 32
+DICTUGET
+THROWIFNOT 50
+LDREF
+LDU 128
+LDI 1
+LDU 256
+PLDDICT
+TUPLE 5
+;; decl: propose
+;; push identifier approversCount
+GETGLOB 14
+GTINT 10
+THROWIFNOT 100
+; expValue
+DUP
+; end expValue
+TRUE
+; colValue
+SETINDEX 2
+NIP
+; end colValue
+DROP
+;; ret param: retParam@0
+PUSHINT 0
+;; emitting 1 value(s)
+PUSH S2
+EQINT -1
+PUSHCONT {
+	PUSH S4
+	CTOS
+	LDU 2
+	LDMSGADDR
+	DROP
+	NIP
+	NEWC
+	STSLICECONST xc
+	STSLICE
+	PUSHINT 96
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	STSLICECONST xe2329c83
+	PUSH S1
+	STIR 1
+	ENDC
+	PUSHINT 1
+	SENDRAWMSG
+}
+PUSHCONT {
+	GETGLOB 4
+	DUP
+	INDEX 3
+	PUSH S1
+	INDEX 2
+	GETGLOB 9
+	BLKSWAP 1, 3
+	INDEX 1
+	NEWC
+	PUSHINT 2
+	STZEROES
+	STI 1
+	PUSHINT 3
+	STZEROES
+	STSLICE
+	SWAP
+	STGRAMS
+	STDICT
+	PUSHINT 104
+	STZEROES
+	STSLICECONST 0
+	STSLICECONST 0
+	GETGLOB 4
+	INDEX 5
+	STUR 32
+	PUSH S1
+	STIR 1
+	ENDC
+	GETGLOB 4
+	INDEX 4
+	SENDRAWMSG
+}
+IFELSE
+DROP
+; end function passProposal
+DROP
+; end modifier restricted
+PUSHCONT {
+	CALL $c7_to_c4$
+}
+IF
+TRUE
+SETGLOB 7
+
+.globl	passProposal_internal
+.type	passProposal_internal, @function
+;; param: index
+; modifier restricted
+;; get member sender
+GETGLOB 9
+;; push identifier manager
+GETGLOB 10
+SDEQ
+THROWIFNOT 100
+ACCEPT
+; function passProposal
+;; index
+;; push identifier index
+DUP
+;; push identifier proposals
+GETGLOB 13
+INDEX 1
+PUSHINT 32
+DICTUGET
+THROWIFNOT 50
+LDREF
+LDU 128
+LDI 1
+LDU 256
+PLDDICT
+TUPLE 5
+;; decl: propose
+;; push identifier approversCount
+GETGLOB 14
+GTINT 10
+THROWIFNOT 100
+; expValue
+DUP
+; end expValue
+TRUE
+; colValue
+SETINDEX 2
+NIP
+; end colValue
+DROP
+;; ret param: retParam@0
+PUSHINT 0
+TUPLE 1
+SETGLOB 8
+; end function passProposal
+DROP
+; end modifier restricted
+GETGLOB 8
+UNTUPLE 1
+
+.globl	c7_to_c4
+.type	c7_to_c4, @function
+GETGLOB 2
+NEWC
+STU 256
+GETGLOB 3
+STUR 64
+GETGLOB 6
+STUR 1
+NEWC
+GETGLOB 14
+SWAP
+STU 256
+GETGLOB 10
+GETGLOB 11
+GETGLOB 12
+GETGLOB 13
+UNTUPLE 2
+REVERSE 7, 0
+STBREF
+STSLICE
+STU 256
+STDICT
+STU 32
+STDICT
+ENDC
+POP C4
+
+.globl	c4_to_c7
+.type	c4_to_c7, @function
+PUSHROOT
+CTOS        ; c4
+LDU 256      ; pubkey c4
+LDU 64      ; pubkey timestamp c4
+LDU 1       ; pubkey [timestamp] constructor_flag memory
+LDREFRTOS
+PLDU 256
+SETGLOB 14
+LDMSGADDR
+LDU 256
+LDDICT
+LDU 32
+PLDDICT
+PAIR
+SETGLOB 13
+SETGLOB 12
+SETGLOB 11
+SETGLOB 10
+TRUE
+SETGLOB 1   ; pubkey [timestamp] constructor_flag
+SETGLOB 6   ; pubkey [timestamp]
+SETGLOB 3   ; D
+SETGLOB 2
+
+.macro c4_to_c7_with_init_storage
+PUSHROOT
+CTOS        ; c4
+DUP        ; c4 c4
+SBITS      ; c4 bits
+GTINT 1    ; c4 bits>1
+PUSHCONT {
+	LDU 256      ; pubkey c4
+	LDU 64      ; pubkey timestamp c4
+	LDU 1       ; pubkey [timestamp] constructor_flag memory
+	LDREFRTOS
+	PLDU 256
+	SETGLOB 14
+	LDMSGADDR
+	LDU 256
+	LDDICT
+	LDU 32
+	PLDDICT
+	PAIR
+	SETGLOB 13
+	SETGLOB 12
+	SETGLOB 11
+	SETGLOB 10
+	TRUE
+	SETGLOB 1   ; pubkey [timestamp] constructor_flag
+	SETGLOB 6   ; pubkey [timestamp]
+	SETGLOB 3   ; D
+	SETGLOB 2
+}
+PUSHCONT {
+	PLDDICT   ; D
+	; init manager
+	PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+	SETGLOB 10
+	; init minimumContribution
+	PUSHINT 0
+	SETGLOB 11
+	; init members
+	NEWDICT
+	SETGLOB 12
+	; init proposals
+	PUSHINT 0
+	NEWDICT
+	PAIR
+	SETGLOB 13
+	; init approversCount
+	PUSHINT 0
+	SETGLOB 14
+	; set contract pubkey
+	PUSHINT 0
+	SWAP
+	PUSHINT 64
+	DICTUGET
+	THROWIFNOT 61
+	PLDU 256
+	SETGLOB 2
+	PUSHINT 0 ; timestamp
+	SETGLOB 3
+	PUSHINT 0 ; constructor_flag
+	SETGLOB 6
+	TRUE
+	SETGLOB 1
+}
+IFELSE
+
+.internal-alias :main_internal,        0
+.internal	:main_internal
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Function: main_internal
+;; param: contract_balance
+;; param: msg_balance
+;; param: int_msg_info
+;; param: msg_body_slice
+PUSHINT 0  ; main_external trans id
+PUSH S2
+CTOS
+LDU 4       ; bounced tail
+LDMSGADDR   ; bounced src tail
+DROP
+SETGLOB 9
+MODPOW2 1
+GETGLOB 4
+TRUE
+SETINDEXQ 1
+PUSHINT 10000000
+SETINDEXQ 2
+NULL
+SETINDEXQ 3
+PUSHINT 1
+SETINDEXQ 4
+SETGLOB 4
+IFRET
+PUSH S1    ; body
+SEMPTY     ; isEmpty
+IFRET
+PUSH S1 ; body
+LDU 32  ; funcId body'
+PUSH S1 ; funcId body' funcId
+IFNOTRET
+PUSH S1 ; funcId body' funcId
+LESSINT 3            ; funcId body' funcId<3
+PUSH S2              ; funcId body' funcId<3 funcId
+PUSHINT 4294967293   ; funcId body' funcId<3 funcId 4294967293
+GREATER              ; funcId body' funcId<3 funcId>4294967293
+OR                   ; funcId body' funcId<3||funcId>4294967293
+PUSHCONT {
+	DROP2
+	THROW 60
+}
+IFJMP
+SWAP    ; body funcId
+CALL 1
+GETGLOB 7
+ISNULL
+PUSHCONT {
+	DROP
+	THROW 60
+}
+IF
+
+.internal-alias :main_external,        -1
+.internal	:main_external
+PUSHINT -1 ; main_external trans id
+PUSHSLICE x8000000000000000000000000000000000000000000000000000000000000000001_
+SETGLOB 9
+PUSH S1
+CALL $c4_to_c7_with_init_storage$
+LDU 1 ; haveSign msgSlice
+SWAP
+PUSHCONT {
+	PUSHINT 512
+	LDSLICEX ; signatureSlice msgSlice
+	DUP      ; signatureSlice msgSlice msgSlice
+	HASHSU   ; signatureSlice msgSlice hashMsgSlice
+	ROT
+	GETGLOB 2
+	DUP
+	SETGLOB 5
+	CHKSIGNU      ; msgSlice isSigned
+	THROWIFNOT 40 ; msgSlice
+}
+IF
+LDU 64                         ; timestamp msgSlice
+SWAP                           ; msgSlice timestamp
+CALL $replay_protection_macro$ ; msgSlice
+LDU 32  ; expireAt msgSlice
+SWAP    ; msgSlice expireAt
+NOW     ; msgSlice expireAt now
+GREATER ; msgSlice expireAt>now
+THROWIFNOT 57
+LDU  32 ; funcId body
+PUSH S1 ; funcId body funcId
+LESSINT 3            ; funcId body' funcId<3
+PUSH S2              ; funcId body' funcId<3 funcId
+PUSHINT 4294967293   ; funcId body' funcId<3 funcId 4294967293
+GREATER              ; funcId body' funcId<3 funcId>4294967293
+OR                   ; funcId body' funcId<3||funcId>4294967293
+PUSHCONT {
+	DROP2
+	THROW 60
+}
+IFJMP
+SWAP    ; body funcId
+CALL 1
+GETGLOB 7
+ISNULL
+PUSHCONT {
+	DROP
+	THROW 60
+}
+IF
+
+.globl	manager
+.public	manager
+.type	manager, @function
+CALL $c4_to_c7$
+GETGLOB 10
+NEWC
+PUSHSLICE xc0000000000000000000000002_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST xdfd7a949
+PUSH S1
+STSLICER
+ENDC
+PUSHINT 1
+SENDRAWMSG
+TRUE
+SETGLOB 7
+
+.globl	minimumContribution
+.public	minimumContribution
+.type	minimumContribution, @function
+CALL $c4_to_c7$
+GETGLOB 11
+NEWC
+PUSHSLICE xc0000000000000000000000002_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST xf7614fc0
+PUSH S1
+STUR 256
+ENDC
+PUSHINT 1
+SENDRAWMSG
+TRUE
+SETGLOB 7
+
+.globl	approversCount
+.public	approversCount
+.type	approversCount, @function
+CALL $c4_to_c7$
+GETGLOB 14
+NEWC
+PUSHSLICE xc0000000000000000000000002_
+STSLICER
+STSLICECONST 0
+STSLICECONST 0
+STSLICECONST xd68a085d
+PUSH S1
+STUR 256
+ENDC
+PUSHINT 1
+SENDRAWMSG
+TRUE
+SETGLOB 7
+

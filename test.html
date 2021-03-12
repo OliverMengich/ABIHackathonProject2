@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styling.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&family=Roboto+Condensed:ital,wght@1,700&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <script src="index.js"></script>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    body {
+        background-color: rgb(45, 33, 136);
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+    }
+    
+    .custom-shape-divider-bottom-1614952832 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        overflow: hidden;
+        line-height: 0;
+    }
+    
+    .custom-shape-divider-bottom-1614952832 svg {
+        position: relative;
+        display: block;
+        width: calc(100% + 1.3px);
+        height: 40vh;
+    }
+    
+    .custom-shape-divider-bottom-1614952832 .shape-fill {
+        fill: #FFFFFF;
+    }
+    
+    .information {
+        position: absolute;
+        left: 20%;
+        top: 20%;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        color: white;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .information a {
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+        font-family: 'Roboto Condensed', sans-serif;
+        padding: 5px 5px;
+    }
+    
+    .requestBtn {
+        padding: 10px 10px;
+        border-radius: 20px;
+        width: 150px;
+        background-color: #fa0cfa;
+        cursor: pointer;
+    }
+    
+    .otherRequest {
+        border: 3px solid green;
+        border-radius: 20px;
+        margin: 0 10px;
+    }
+    
+    .activeProp {
+        display: block;
+        position: absolute;
+        left: 15%;
+        top: 15%;
+        width: 400px;
+        height: 50vh;
+        background: #f117bb;
+        padding: 20px;
+        border-radius: 20px;
+        display: none;
+    }
+    
+    .close {
+        float: right;
+        font-size: 20px;
+        cursor: pointer;
+    }
+    
+    #submit {
+        padding: 3px 3px;
+        text-align: center;
+        border-radius: 10px;
+        width: 100px;
+        font-size: 15px;
+        background-color: #0c1cfa;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+    
+    .form-class {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .box {
+        width: 300px;
+        padding: 10px;
+        border-radius: 20px;
+    }
+</style>
+
+<body>
+    <header>
+        <h1 style="font-family: 'Akaya Telivigala', cursive; color:white; margin:15px 15px;">Bihashara Invest</h1>
+        <ul>
+            <li><a>About Us</a></li>
+            <li><a href="#">Home</a></li>
+            <li><a>Contact Us</a></li>
+        </ul>
+    </header>
+    <div class="custom-shape-divider-bottom-1614952832">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z" class="shape-fill"></path>
+        </svg>
+    </div>
+    <div>
+        <img alt="" src="2.jpg" style="height: auto; max-height:380px; float:right; opacity:0.9; margin:5px 10px; border-radius:20px">
+    </div>
+    <div class="information">
+        <button class="requestBtn" id="viewProp">Create a Proposal </button>
+        <div>
+            <a class="otherRequest" href="#">View active Proposals</a>
+        </div>
+        
+    </div>
+    <div class="activeProp" id="proposal">
+        <span class="close">&times;</span>
+        <h1 style="font-size: 26px; font-family: Verdana, Geneva, Tahoma, sans-serif; ">Create an Active Proposal</h1>
+        <form class="form-class">
+            <label>Enter Reason For your Proposal</label>
+            <input type="text" class="box" name="reason">
+
+            <label>Amount you require</label>
+            <input type="number" class="box" name="reason">
+            <input type="submit" name="submit" id="submit" value="Submit">
+        </form>
+    </div>
+
+    <script>
+        var modal = document.getElementById("proposal");
+        var close = document.getElementsByClassName("close")[0];
+        var prop = document.getElementById("viewProp");
+        prop.onclick = function() {
+            modal.style.display = "block";
+        }
+        close.onclick = function() {
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
